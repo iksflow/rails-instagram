@@ -32,3 +32,7 @@ $ rails generate devise:install
 $ rails generate devise user  
 ```
 
+## 3. Active Storage
+```shell
+rails active_storage:install
+```
