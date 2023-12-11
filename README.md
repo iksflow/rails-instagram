@@ -25,3 +25,10 @@ $ rails new rails-instagram
 $ rails db:setup
 $ rails db:migrate
 ```
+
+## 2. Devise
+```shell
+$ rails generate devise:install
+$ rails generate devise user  
+```
+
