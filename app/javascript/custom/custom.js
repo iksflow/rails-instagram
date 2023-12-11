@@ -3,9 +3,9 @@ import FilePondPluginImagePreview from 'filepond-plugin-image-preview';
 import FilePondPluginFileValidateType from 'filepond-plugin-file-validate-type';
 
 
-document.addEventListener("turbo:load", loadFilePond);
+// document.addEventListener("turbo:load", loadFilePond);
 
-function loadFilePond() {
+// function loadFilePond() {
   FilePond.registerPlugin(
     FilePondPluginFileValidateType,
     FilePondPluginImagePreview
@@ -18,4 +18,4 @@ function loadFilePond() {
     allowReorder: true,
     acceptedFileTypes: ['image/*'],
   });
-}
+// }
