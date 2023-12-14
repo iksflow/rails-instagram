@@ -7,11 +7,20 @@
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
       <span class="navbar-toggler-icon"></span>
     </button>
-    <div class="d-flex">
+    <div class="d-flex gap-2">
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <form class="d-flex" role="search">
-          <input class="form-control me-2 border-0" type="search" placeholder="Search" aria-label="Search" style="background: #efefef;">
-        </form>
+        <%= form_with(url: users_path, method: :get, data: { turbo_frame: "search_results", controller: "search-results" }, class: "d-flex") do |f| %>
+          <div class="dropdown">
+            <%= f.text_field :search_query, class: "form-control me-2 border-0", type: "search", placeholder: "Search", "aria-label": "Search", style: "#efefef",
+                "data-bs-toggle": "dropdown", "aria-expanded":"false", data: { action: "input->search-results#search"}%>
+
+            <ul class="dropdown-menu p-4">
+              <div class="d-flex flex-column gap-2" style="width: 25rem">
+                <%= render "layouts/search_results", users: [] %>
+              </div>
+            </ul>
+          </div>
+        <% end %>
       </div>
       <div class="navbar-collapse gap-4">
         <%= link_to root_path, class: "text-dark" do %>
@@ -36,11 +45,11 @@
                 <li>
                   <div class="d-flex justify-content-between">
                     <div class="d-flex">
-                      <%= image_tag fr.follower.profile_pic.attached? ? fr.follower.profile_pic : "user-pp.png", class: "img-thumbnail rounded-circle", style: "width: 2.5rem;" %>
+                      <%= image_tag u.profile_pic.attached? ? u.profile_pic : "user-pp.png", class: "img-thumbnail rounded-circle", style: "width: 2.5rem;" %>
                       <div class="d-flex flex-column mx-3 justify-content-center">
                         <small class="fw-bold" style="overflow: hidden; text-overflow: ellipsis; white-space: nowrap; min-width: 10rem;">
-                          <%= link_to fr.follower, class: "a-decoration-none" do %>
-                            <%= fr.follower.username %>
+                          <%= link_to u, class: "a-decoration-none" do %>
+                            <%= u.username %>
                           <% end %>
                         </small>
                       </div>
